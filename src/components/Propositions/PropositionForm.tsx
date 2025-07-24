@@ -434,6 +434,8 @@ const PropositionForm = () => {
                     montant={selectedMaterials.reduce((sum, m) => sum + (m.valeurInitialeHT || 0), 0)}
                     duree={calculationInfo.duree}
                     taux={selectedBareme?.taux || 7.5}
+                    clientName={`${clientInfo.nom} ${clientInfo.prenom || ''}`.trim() || "Client"}
+                    materialType={selectedMaterials.length > 0 ? selectedMaterials[0].designation : "Matériel"}
                     onSaveDraft={() => console.log("Sauvegarder en brouillon")}
                     onSendForValidation={() => console.log("Envoyer pour validation")}
                     className="w-full"
