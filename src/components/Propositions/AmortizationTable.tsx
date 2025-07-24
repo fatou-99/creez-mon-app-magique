@@ -14,7 +14,6 @@ import { Calculator, Save, Send, Eye, EyeOff } from "lucide-react";
 
 interface AmortizationRowProps {
   echeance: number;
-  capitalDebPeriode: number;
   capitalRemb: number;
   interet: number;
   annuite: number;
@@ -80,7 +79,6 @@ const AmortizationTable = ({
 
       rows.push({
         echeance: i,
-        capitalDebPeriode: remainingCapital,
         capitalRemb: principal,
         interet: interest,
         annuite: monthlyPayment,
@@ -272,28 +270,32 @@ const AmortizationTable = ({
             <TableHeader>
               <TableRow>
                 <TableHead className="text-center font-medium">Échéance</TableHead>
-                <TableHead className="text-right font-medium">Capital deb période</TableHead>
-                <TableHead className="text-right font-medium">Capital remb</TableHead>
+                <TableHead className="text-right font-medium">Principal</TableHead>
                 <TableHead className="text-right font-medium">Intérêt</TableHead>
-                <TableHead className="text-right font-medium">Annuité</TableHead>
+                <TableHead className="text-right font-medium">Loyer à payer</TableHead>
                 <TableHead className="text-right font-medium">Capital restant du</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
-              {amortizationData.map((row, index) => (
+              {amortizationData.slice(0, 7).map((row, index) => (
                 <TableRow key={row.echeance} className={index % 2 === 0 ? "bg-muted/20" : ""}>
                   <TableCell className="text-center font-medium">{row.echeance}</TableCell>
-                  <TableCell className="text-right">{formatCurrency(row.capitalDebPeriode)}</TableCell>
                   <TableCell className="text-right text-primary font-medium">{formatCurrency(row.capitalRemb)}</TableCell>
                   <TableCell className="text-right">{formatCurrency(row.interet)}</TableCell>
                   <TableCell className="text-right font-medium">{formatCurrency(row.annuite)}</TableCell>
                   <TableCell className="text-right">{formatCurrency(row.capitalRestantDu)}</TableCell>
                 </TableRow>
               ))}
+              {amortizationData.length > 7 && (
+                <TableRow className="bg-muted/30">
+                  <TableCell colSpan={5} className="text-center text-muted-foreground py-2">
+                    ... et {amortizationData.length - 7} autres échéances
+                  </TableCell>
+                </TableRow>
+              )}
               {/* Ligne des totaux */}
               <TableRow className="bg-primary/10 font-medium border-t-2">
                 <TableCell className="text-center">Total</TableCell>
-                <TableCell className="text-right">-</TableCell>
                 <TableCell className="text-right">{formatCurrency(montant)}</TableCell>
                 <TableCell className="text-right">{formatCurrency(totalInterets)}</TableCell>
                 <TableCell className="text-right">{formatCurrency(totalAnnuites)}</TableCell>
