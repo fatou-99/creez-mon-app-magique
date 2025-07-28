@@ -1,5 +1,3 @@
-// This file is now only used for Lovable compatibility
-// The main app is now in apps/portal/vite.config.ts
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
@@ -19,7 +17,7 @@ export default defineConfig(({ mode }) => ({
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
-      "@shared": path.resolve(__dirname, "./packages"),
+      "@shared": path.resolve(__dirname, "../../packages"),
     },
   },
 }));

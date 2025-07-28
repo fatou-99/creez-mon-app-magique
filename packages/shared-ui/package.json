@@ -1,0 +1,14 @@
+{
+  "name": "@portal/shared-ui",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "src/index.ts",
+  "dependencies": {
+    "react": "*",
+    "react-dom": "*",
+    "@radix-ui/react-slot": "*",
+    "class-variance-authority": "*",
+    "clsx": "*",
+    "tailwind-merge": "*"
+  }
+}
