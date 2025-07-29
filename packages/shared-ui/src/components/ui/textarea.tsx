@@ -46,7 +46,7 @@ export interface TextareaProps extends Omit<TextFieldProps, 'variant' | 'multili
   variant?: 'outlined' | 'filled' | 'standard';
 }
 
-const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
+const Textarea = React.forwardRef<HTMLDivElement, TextareaProps>(
   ({ variant = 'outlined', rows = 3, ...props }, ref) => {
     return (
       <StyledTextarea

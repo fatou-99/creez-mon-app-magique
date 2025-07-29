@@ -55,11 +55,10 @@ const TabsList = React.forwardRef<
 TabsList.displayName = 'TabsList';
 
 const TabsTrigger = React.forwardRef<
-  HTMLButtonElement,
+  HTMLDivElement,
   React.ComponentProps<typeof MuiTab>
 >(({ className, ...props }, ref) => (
   <StyledTab
-    ref={ref}
     className={cn(className)}
     {...props}
   />

@@ -45,7 +45,9 @@ const StyledTextField = styled(TextField)(({ theme }) => ({
   },
 }));
 
-export interface DatePickerComponentProps extends Omit<DatePickerProps<Date>, 'renderInput'> {
+export interface DatePickerComponentProps {
+  value?: Date | null;
+  onChange?: (value: Date | null) => void;
   label?: string;
   placeholder?: string;
   error?: boolean;

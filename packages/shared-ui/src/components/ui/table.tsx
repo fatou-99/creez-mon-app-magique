@@ -75,7 +75,7 @@ const Table = React.forwardRef<HTMLTableElement, TableProps>(
 
     if (container) {
       return (
-        <StyledTableContainer component={Paper} elevation={0}>
+        <StyledTableContainer>
           {table}
         </StyledTableContainer>
       );
@@ -115,8 +115,13 @@ const TableRow = React.forwardRef<HTMLTableRowElement, React.HTMLAttributes<HTML
 TableRow.displayName = "TableRow";
 
 const TableHead = React.forwardRef<HTMLTableCellElement, React.ThHTMLAttributes<HTMLTableCellElement>>(
-  ({ children, ...props }, ref) => (
-    <StyledTableCell ref={ref} component="th" {...props}>
+  ({ children, align, ...props }, ref) => (
+    <StyledTableCell 
+      ref={ref} 
+      component="th" 
+      align={align === 'char' ? 'left' : align as 'left' | 'right' | 'center' | 'inherit' | 'justify'} 
+      {...props}
+    >
       {children}
     </StyledTableCell>
   )
@@ -124,8 +129,12 @@ const TableHead = React.forwardRef<HTMLTableCellElement, React.ThHTMLAttributes<
 TableHead.displayName = "TableHead";
 
 const TableCell = React.forwardRef<HTMLTableCellElement, React.TdHTMLAttributes<HTMLTableCellElement>>(
-  ({ children, ...props }, ref) => (
-    <StyledTableCell ref={ref} {...props}>
+  ({ children, align, ...props }, ref) => (
+    <StyledTableCell 
+      ref={ref} 
+      align={align === 'char' ? 'left' : align as 'left' | 'right' | 'center' | 'inherit' | 'justify'} 
+      {...props}
+    >
       {children}
     </StyledTableCell>
   )
