@@ -6,7 +6,10 @@
   "dependencies": {
     "react": "*",
     "react-dom": "*",
-    "@radix-ui/react-slot": "*",
+    "@mui/material": "*",
+    "@mui/system": "*",
+    "@emotion/react": "*",
+    "@emotion/styled": "*",
     "class-variance-authority": "*",
     "clsx": "*",
     "tailwind-merge": "*"
