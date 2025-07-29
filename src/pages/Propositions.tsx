@@ -6,7 +6,7 @@ import PropositionsTable from "@/components/Propositions/PropositionsTable";
 import PropositionForm from "@/components/Propositions/PropositionForm";
 import PropositionsDashboard from "@/components/Propositions/PropositionsDashboard";
 import PropositionDetails from "@/components/Propositions/PropositionDetails";
-import { Button } from "@/components/ui/button";
+import { Button } from "../ui-shared";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { Plus, ArrowLeft, BarChart3 } from "lucide-react";
 

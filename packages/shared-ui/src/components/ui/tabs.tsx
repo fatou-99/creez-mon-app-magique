@@ -1,8 +1,8 @@
-import React from 'react';
-import { Tabs as MuiTabs, Tab as MuiTab, TabsProps as MuiTabsProps, styled } from '@mui/material';
-import { cn } from '../../lib/utils';
+import * as React from "react";
+import { Tabs as MuiTabs, Tab as MuiTab, TabsProps as MuiTabsProps } from "@mui/material";
+import { styled } from "@mui/system";
 
-const StyledTabs = styled(MuiTabs)(() => ({
+const StyledTabs = styled(MuiTabs)(({ theme }) => ({
   '& .MuiTabs-indicator': {
     backgroundColor: 'hsl(var(--primary))',
     height: '2px',
@@ -12,7 +12,7 @@ const StyledTabs = styled(MuiTabs)(() => ({
   },
 }));
 
-const StyledTab = styled(MuiTab)(() => ({
+const StyledTab = styled(MuiTab)(({ theme }) => ({
   textTransform: 'none',
   minWidth: 0,
   padding: '12px 16px',
@@ -27,57 +27,57 @@ const StyledTab = styled(MuiTab)(() => ({
   },
 }));
 
-const Tabs = React.forwardRef<
-  HTMLDivElement,
-  MuiTabsProps & { className?: string }
->(({ className, ...props }, ref) => (
-  <StyledTabs
-    ref={ref}
-    className={cn(className)}
-    {...props}
-  />
-));
-Tabs.displayName = 'Tabs';
+export interface SharedTabsProps {
+  tabs: string[];
+  value: number;
+  onChange: (newIndex: number) => void;
+  sx?: object;
+}
 
-const TabsList = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn(
-      'inline-flex h-10 items-center justify-center rounded-md bg-muted p-1 text-muted-foreground',
-      className
-    )}
-    {...props}
-  />
-));
-TabsList.displayName = 'TabsList';
+const Tabs = React.forwardRef<HTMLDivElement, MuiTabsProps & { className?: string }>(
+  ({ className, ...props }, ref) => (
+    <StyledTabs ref={ref} {...props} />
+  )
+);
+Tabs.displayName = "Tabs";
 
-const TabsTrigger = React.forwardRef<
-  HTMLDivElement,
-  React.ComponentProps<typeof MuiTab>
->(({ className, ...props }, ref) => (
-  <StyledTab
-    className={cn(className)}
-    {...props}
-  />
-));
-TabsTrigger.displayName = 'TabsTrigger';
+const TabsList = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+  ({ className, ...props }, ref) => (
+    <div ref={ref} {...props} />
+  )
+);
+TabsList.displayName = "TabsList";
 
-const TabsContent = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn(
-      'mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
-      className
-    )}
-    {...props}
-  />
-));
-TabsContent.displayName = 'TabsContent';
+const TabsTrigger = React.forwardRef<HTMLDivElement, React.ComponentProps<typeof MuiTab>>(
+  ({ className, ...props }, ref) => (
+    <StyledTab className={className} {...props} />
+  )
+);
+TabsTrigger.displayName = "TabsTrigger";
 
-export { Tabs, TabsList, TabsTrigger, TabsContent };
+const TabsContent = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+  ({ className, ...props }, ref) => (
+    <div ref={ref} {...props} />
+  )
+);
+TabsContent.displayName = "TabsContent";
+
+const SharedTabs = React.forwardRef<HTMLDivElement, SharedTabsProps>(
+  ({ tabs, value, onChange, sx }, ref) => {
+    return (
+      <StyledTabs
+        ref={ref}
+        value={value}
+        onChange={(_, newValue) => onChange(newValue)}
+        sx={sx}
+      >
+        {tabs.map((tab, index) => (
+          <StyledTab key={index} label={tab} />
+        ))}
+      </StyledTabs>
+    );
+  }
+);
+SharedTabs.displayName = "SharedTabs";
+
+export { Tabs, TabsList, TabsTrigger, TabsContent, SharedTabs };
