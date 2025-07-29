@@ -8,10 +8,12 @@
     "react-dom": "*",
     "@mui/material": "*",
     "@mui/system": "*",
+    "@mui/x-date-pickers": "*",
     "@emotion/react": "*",
     "@emotion/styled": "*",
     "class-variance-authority": "*",
     "clsx": "*",
-    "tailwind-merge": "*"
+    "tailwind-merge": "*",
+    "date-fns": "*"
   }
 }

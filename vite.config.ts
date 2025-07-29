@@ -20,6 +20,8 @@ export default defineConfig(({ mode }) => ({
     alias: {
       "@": path.resolve(__dirname, "./src"),
       "@shared": path.resolve(__dirname, "./packages"),
+      "@portal/shared-ui": path.resolve(__dirname, "./packages/shared-ui/src"),
+      "@portal/shared-types": path.resolve(__dirname, "./packages/shared-types/src"),
     },
   },
 }));
